@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0f1419">
+  <title>比賽數據記錄 — 數據記錄</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="body--sheet">
+  <div class="page page--sheet">
+    <header class="header header--sheet">
+      <a href="index.html" class="back-link">← 返回</a>
+      <div class="header__text">
+        <h1 id="match-title" class="header--sheet__title">載入中…</h1>
+        <p class="subtitle header--sheet__meta" id="match-meta"></p>
+      </div>
+      <div class="header__actions header__actions--sheet">
+        <a id="team-friendly-tab" class="btn btn--ghost btn--sm team-tab" href="#">友隊</a>
+        <a id="team-enemy-tab" class="btn btn--ghost btn--sm team-tab" href="#">敵隊</a>
+        <button type="button" id="edit-match-btn" class="btn btn--ghost btn--sm">編輯</button>
+        <a id="edit-players-link" class="btn btn--ghost btn--sm" href="#">設定</a>
+        <a id="analysis-link" class="btn btn--primary btn--sm" href="#">分析</a>
+      </div>
+    </header>
+
+    <section class="round-panel" aria-label="輪次控制">
+      <div class="round-panel__info">
+        <p id="round-status" class="round-panel__status">載入中…</p>
+        <p id="round-meta" class="round-panel__meta">請選擇本輪上場球員</p>
+      </div>
+      <div class="round-panel__actions">
+        <button type="button" id="start-round-btn" class="btn btn--primary btn--sm">開始本輪</button>
+        <button type="button" id="finish-round-btn" class="btn btn--ghost btn--sm">結束本輪</button>
+        <button type="button" id="reset-round-btn" class="btn btn--ghost btn--sm">重設本輪</button>
+        <button type="button" id="match-over-btn" class="btn btn--primary btn--sm">整場結束</button>
+      </div>
+    </section>
+
+    <section class="sheet-panel" aria-labelledby="stats-title">
+      <div class="sheet-panel__bar">
+        <p id="player-count" class="stats-meta"></p>
+        <p class="sheet-hint">球員欄與標題列已固定 · 滑動查看其他欄位</p>
+      </div>
+
+      <div class="sheet-scroll">
+        <table class="sheet-table" id="sheet-table">
+          <thead>
+            <tr id="sheet-header-row"></tr>
+          </thead>
+          <tbody id="sheet-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <dialog id="match-edit-dialog" class="modal">
+    <form id="match-edit-form" class="modal__form" method="dialog">
+      <div class="modal__header">
+        <h2 class="modal__title">編輯比賽資訊</h2>
+        <p class="modal__subtitle">修改比賽標題、日期與備註。</p>
+      </div>
+
+      <div class="field">
+        <label for="edit-match-name">比賽名稱</label>
+        <input
+          id="edit-match-name"
+          name="matchName"
+          type="text"
+          placeholder="例如：聯賽 — 第 3 場"
+          required
+          maxlength="80"
+        >
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="edit-match-date">日期</label>
+          <input id="edit-match-date" name="matchDate" type="date" required>
+        </div>
+        <div class="field">
+          <label for="edit-match-opponent">敵隊名稱</label>
+          <input
+            id="edit-match-opponent"
+            name="matchOpponent"
+            type="text"
+            placeholder="選填"
+            maxlength="80"
+          >
+        </div>
+      </div>
+
+      <div class="modal__actions">
+        <button type="button" id="match-edit-cancel" class="btn btn--ghost">取消</button>
+        <button type="submit" class="btn btn--primary">儲存</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="round-select-dialog" class="modal">
+    <form id="round-select-form" class="modal__form" method="dialog">
+      <div class="modal__header">
+        <h2 class="modal__title">選擇本輪上場球員</h2>
+        <p class="modal__subtitle">每輪最多 6 位，超過時將無法開始。</p>
+      </div>
+
+      <div id="round-player-list" class="round-player-list"></div>
+
+      <div class="modal__actions">
+        <button type="button" id="round-select-cancel" class="btn btn--ghost">取消</button>
+        <button type="submit" class="btn btn--primary">開始本輪</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/stats-config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/stats.js"></script>
+</body>
+</html>

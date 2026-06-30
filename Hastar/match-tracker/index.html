@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0f1419">
+  <title>比賽數據記錄 — 首頁</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header__text">
+        <p class="eyebrow">比賽數據記錄</p>
+        <h1>賽事檔案</h1>
+        <p class="subtitle">每個賽事檔案包含球員名單與多場比賽記錄。選擇賽事或建立新賽事。</p>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="panel panel--new" aria-labelledby="new-tournament-title">
+        <div class="panel__header">
+          <h2 id="new-tournament-title">新賽事</h2>
+          <p>建立新賽事檔案，並設定球員名單。</p>
+        </div>
+
+        <form id="new-tournament-form" class="new-match-form">
+          <div class="field">
+            <label for="tournament-name">賽事名稱</label>
+            <input
+              id="tournament-name"
+              name="tournamentName"
+              type="text"
+              placeholder="例如：2026 春季聯賽"
+              required
+              maxlength="80"
+            >
+          </div>
+          <button type="submit" class="btn btn--primary">建立賽事</button>
+        </form>
+      </section>
+
+      <section class="panel panel--past" aria-labelledby="tournament-list-title">
+        <div class="panel__header panel__header--row">
+          <div>
+            <h2 id="tournament-list-title">已儲存賽事</h2>
+            <p id="tournament-count">載入中…</p>
+          </div>
+        </div>
+
+        <div id="empty-state" class="empty-state" hidden>
+          <p>尚未建立任何賽事。</p>
+          <p class="empty-state__hint">請使用左側表單建立第一個賽事檔案。</p>
+        </div>
+
+        <ul id="tournament-list" class="match-list" aria-live="polite"></ul>
+
+        <div class="sync-panel">
+          <h3 class="sync-panel__title">與隊友共用數據</h3>
+          <p class="sync-panel__hint">複製整個資料夾給隊友，或使用匯出／匯入 JSON 同步所有賽事與比賽。</p>
+          <p id="sync-status" style="margin: 10px 0 12px; color: #7df9ff; font-size: 0.95rem;">正在檢查同步狀態…</p>
+          <div class="sync-panel__actions">
+            <button type="button" id="export-btn" class="btn btn--ghost">匯出全部數據</button>
+            <button type="button" id="import-btn" class="btn btn--ghost">匯入數據</button>
+            <button type="button" id="sync-now-btn" class="btn btn--ghost">手動同步</button>
+            <input type="file" id="import-file" accept="application/json,.json">
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/stats-config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

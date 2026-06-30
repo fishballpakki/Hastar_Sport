@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0f1419">
+  <title>比賽數據記錄 — 數據分析</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="page page--wide">
+    <header class="header header--compact">
+      <a href="index.html" class="back-link">← 返回首頁</a>
+      <div class="header__text header__text--row">
+        <div>
+          <p class="eyebrow">數據分析</p>
+          <h1 id="match-title">載入中…</h1>
+          <p class="subtitle" id="match-meta"></p>
+        </div>
+        <div class="header__actions">
+          <a id="team-friendly-tab" class="btn btn--ghost team-tab" href="#">友隊分析</a>
+          <a id="team-enemy-tab" class="btn btn--ghost team-tab" href="#">敵隊分析</a>
+          <a id="back-to-stats-link" class="btn btn--primary" href="#">返回記錄</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="main main--single">
+      <section class="panel" aria-labelledby="analysis-title">
+        <div class="panel__header">
+          <h2 id="analysis-title">球員分析</h2>
+          <p class="analysis-legend">
+            上場局數為 0 時仍視為上場 1 局計算。雷達圖為全隊相對分數（0–100）。
+          </p>
+          <p class="analysis-legend analysis-legend--sub">
+            <strong>AO</strong> 場均進攻威脅 · <strong>AP</strong> 場均生存貢獻 · <strong>AQ</strong> 場均綜合評分 ·
+            <strong>評級</strong> S&gt;7.5 · A 6.0–7.4 · B 5.0–5.9 · C 4.0–4.9 · D&lt;4.0 ·
+            <strong>擋波</strong> 擋波數 ÷ 持球死亡
+          </p>
+        </div>
+
+        <div id="analysis-empty" class="empty-state" hidden>
+          <p>此隊尚無球員。</p>
+        </div>
+
+        <div id="chart-grid" class="chart-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="vendor/chart.umd.min.js"></script>
+  <script src="js/stats-config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/metrics.js"></script>
+  <script src="js/analysis.js"></script>
+</body>
+</html>

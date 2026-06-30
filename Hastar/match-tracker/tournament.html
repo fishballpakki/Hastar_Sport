@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0f1419">
+  <title>比賽數據記錄 — 賽事</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header header--compact">
+      <a href="index.html" class="back-link">← 返回首頁</a>
+      <div class="header__text">
+        <p class="eyebrow">賽事檔案</p>
+        <h1 id="tournament-title">載入中…</h1>
+        <p class="subtitle" id="tournament-meta"></p>
+      </div>
+    </header>
+
+    <main class="main main--single">
+      <section class="panel" aria-labelledby="matches-title">
+        <div class="panel__header panel__header--row">
+          <div>
+            <h2 id="matches-title">比賽列表</h2>
+            <p id="match-count">載入中…</p>
+          </div>
+          <div class="header__actions">
+            <a id="manage-players-link" class="btn btn--ghost">球員名單</a>
+            <a id="tournament-analysis-link" class="btn btn--ghost">整體分析</a>
+            <button type="button" id="new-match-btn" class="btn btn--primary">新比賽</button>
+          </div>
+        </div>
+
+        <div id="matches-empty" class="empty-state" hidden>
+          <p>尚未建立比賽。</p>
+        </div>
+        <ul id="match-list" class="match-list"></ul>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="new-match-dialog" class="modal">
+    <form id="new-match-form" class="modal__form">
+      <div class="modal__header">
+        <h2 class="modal__title">新比賽</h2>
+        <p class="modal__subtitle">建立比賽後，選擇上場球員並輸入敵隊資料。</p>
+      </div>
+      <div class="field">
+        <label for="match-name">比賽名稱</label>
+        <input id="match-name" name="matchName" type="text" placeholder="例如：小組賽 A 組" required maxlength="80">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="match-date">日期</label>
+          <input id="match-date" name="matchDate" type="date" required>
+        </div>
+        <div class="field">
+          <label for="match-notes">備註</label>
+          <input id="match-notes" name="matchNotes" type="text" placeholder="選填" maxlength="80">
+        </div>
+      </div>
+      <div class="modal__actions">
+        <button type="button" id="new-match-cancel" class="btn btn--ghost">取消</button>
+        <button type="submit" class="btn btn--primary">下一步</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/stats-config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/tournament.js"></script>
+</body>
+</html>

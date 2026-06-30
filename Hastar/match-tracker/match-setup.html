@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0f1419">
+  <title>比賽數據記錄 — 比賽設定</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header header--compact">
+      <a id="back-link" class="back-link" href="#">← 返回賽事</a>
+      <div class="header__text">
+        <p class="eyebrow">比賽設定</p>
+        <h1 id="match-title">載入中…</h1>
+        <p class="subtitle" id="match-meta"></p>
+      </div>
+    </header>
+
+    <main class="main main--single">
+      <form id="match-setup-form" class="panel setup-form">
+        <section class="setup-section">
+          <h2>友隊上場球員</h2>
+          <p class="setup-hint">勾選本場比賽上場的友隊球員。</p>
+          <ul id="friendly-picker" class="picker-list"></ul>
+        </section>
+
+        <section class="setup-section">
+          <h2>敵隊資料</h2>
+          <div class="field">
+            <label for="enemy-team-name">敵隊名稱</label>
+            <input id="enemy-team-name" name="enemyTeamName" type="text" placeholder="例如：XX 大學" required maxlength="80">
+          </div>
+
+          <p class="setup-hint">加入敵隊球員（姓名與背號）。</p>
+          <div class="player-form">
+            <div class="field">
+              <label for="enemy-name">敵隊球員姓名</label>
+              <input id="enemy-name" type="text" placeholder="姓名" maxlength="40">
+            </div>
+            <div class="field field--number">
+              <label for="enemy-number">背號</label>
+              <input id="enemy-number" type="text" inputmode="numeric" placeholder="7" maxlength="4">
+            </div>
+            <button type="button" id="add-enemy-btn" class="btn btn--ghost">加入敵隊球員</button>
+          </div>
+          <ul id="enemy-list" class="player-list"></ul>
+        </section>
+
+        <button type="submit" class="btn btn--primary btn--wide">開始記錄數據</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="js/stats-config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/match-setup.js"></script>
+</body>
+</html>

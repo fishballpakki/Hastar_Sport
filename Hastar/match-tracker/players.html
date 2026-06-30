@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0f1419">
+  <title>比賽數據記錄 — 球員管理</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header header--compact">
+      <a id="back-link" class="back-link">← 返回賽事</a>
+      <div class="header__text">
+        <p class="eyebrow">球員管理</p>
+        <h1 id="player-page-title">載入中…</h1>
+        <p class="subtitle" id="player-page-meta"></p>
+      </div>
+      <div class="header__actions">
+        <a id="back-to-tournament" class="btn btn--ghost">返回賽事</a>
+        <button type="button" id="new-match-btn" class="btn btn--primary">新比賽</button>
+      </div>
+    </header>
+
+    <main class="main main--single">
+      <section class="panel" aria-labelledby="roster-title">
+        <div class="panel__header">
+          <h2 id="roster-title">球員名單</h2>
+          <p>新增與管理此賽事球員。新比賽時可從這裡選擇球員。</p>
+        </div>
+
+        <form id="add-roster-form" class="player-form">
+          <div class="field">
+            <label for="player-name">球員姓名</label>
+            <input id="player-name" name="playerName" type="text" placeholder="例如：王小明" required maxlength="40">
+          </div>
+          <div class="field field--number">
+            <label for="player-number">背號</label>
+            <input id="player-number" name="playerNumber" type="text" inputmode="numeric" placeholder="7" required maxlength="4">
+          </div>
+          <button type="submit" class="btn btn--primary">加入</button>
+        </form>
+
+        <ul id="roster-list" class="player-list"></ul>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="new-match-dialog" class="modal">
+    <form id="new-match-form" class="modal__form">
+      <div class="modal__header">
+        <h2 class="modal__title">新比賽</h2>
+        <p class="modal__subtitle">建立比賽後，選擇上場球員並輸入敵隊資料。</p>
+      </div>
+      <div class="field">
+        <label for="match-name">比賽名稱</label>
+        <input id="match-name" name="matchName" type="text" placeholder="例如：小組賽 A 組" required maxlength="80">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="match-date">日期</label>
+          <input id="match-date" name="matchDate" type="date" required>
+        </div>
+        <div class="field">
+          <label for="match-notes">備註</label>
+          <input id="match-notes" name="matchNotes" type="text" placeholder="選填" maxlength="80">
+        </div>
+      </div>
+      <div class="modal__actions">
+        <button type="button" id="new-match-cancel" class="btn btn--ghost">取消</button>
+        <button type="submit" class="btn btn--primary">下一步</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/stats-config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/players.js"></script>
+</body>
+</html>

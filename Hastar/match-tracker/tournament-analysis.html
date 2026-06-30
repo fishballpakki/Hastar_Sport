@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#07111f">
+  <title>比賽數據記錄 — 整體分析</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="page page--wide">
+    <header class="header header--compact">
+      <a id="back-link" class="back-link">← 返回賽事</a>
+      <div class="header__text header__text--row">
+        <div>
+          <p class="eyebrow">整體分析</p>
+          <h1 id="tournament-analysis-title">載入中…</h1>
+          <p class="subtitle" id="tournament-analysis-meta"></p>
+        </div>
+        <div class="header__actions">
+          <a id="back-to-tournament" class="btn btn--ghost">返回賽事</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="main main--single">
+      <section class="panel" aria-labelledby="tournament-analysis-panel-title">
+        <div class="panel__header">
+          <h2 id="tournament-analysis-panel-title">全賽季球員表現</h2>
+          <p class="analysis-legend">
+            此頁面會統整該賽事下所有比賽的數據，依照整體表現顯示排行，並提供每位球員的雷達圖。
+          </p>
+          <p class="analysis-legend analysis-legend--sub">
+            <strong>AO</strong> 場均進攻威脅 · <strong>AP</strong> 場均生存貢獻 · <strong>AQ</strong> 場均綜合評分 ·
+            <strong>評級</strong> S&gt;7.5 · A 6.0–7.4 · B 5.0–5.9 · C 4.0–4.9 · D&lt;4.0
+          </p>
+        </div>
+
+        <div id="analysis-empty" class="empty-state" hidden>
+          <p>這個賽事尚未建立任何比賽。</p>
+        </div>
+
+        <div id="chart-grid" class="chart-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="vendor/chart.umd.min.js"></script>
+  <script src="js/stats-config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/metrics.js"></script>
+  <script src="js/tournament-analysis.js"></script>
+</body>
+</html>
