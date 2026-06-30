@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曦城體育 Hastar Sports - 閃避球隊</title>
+   <style>
+    /* 基礎樣式設定 */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #222222; background-color: #ffffff; }
+    a { text-decoration: none; color: inherit; }
+    
+    /* 導覽列：改為純白底色，配上金黃色下邊框 */
+    header { 
+        background-color: #ffffff; 
+        color: #222222; 
+        position: fixed; 
+        width: 100%; 
+        top: 0; 
+        z-index: 1000; 
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        border-bottom: 4px solid #FFB300; /* 金黃色主線條 */
+    }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 15px 20px; }
+    .logo { font-size: 24px; font-weight: bold; letter-spacing: 1px; color: #FFB300; } /* Logo 改為金黃色 */
+    nav ul { display: flex; list-style: none; }
+    nav ul li { margin-left: 20px; font-weight: 500; }
+    nav ul li a:hover { color: #FFB300; transition: 0.3s; } /* 滑鼠移過去變成金黃色 */
+
+    /* 主橫幅 (Hero Section)：調暗背景遮罩，讓金黃與白色字體極度突出 */
+    .hero { 
+       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('images/hero-dodgeball.jpg') no-repeat center center/cover; 
+    height: 60vh;
+        color: white; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        text-align: center; 
+        padding: 0 20px; 
+        margin-top: 60px; 
+    }
+    .hero h1 { font-size: 48px; margin-bottom: 10px; color: #FFB300; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); } /* 主標題金黃色 */
+    .hero p { font-size: 20px; max-width: 600px; color: #ffffff; }
+
+    /* 區塊通用樣式 */
+    section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; scroll-margin-top: 60px; }
+    section h2 { text-align: center; font-size: 32px; margin-bottom: 40px; color: #222222; position: relative; }
+    section h2::after { content: ''; display: block; width: 60px; height: 4px; background-color: #FFB300; margin: 10px auto 0; } /* 標題下裝飾線改為金黃色 */
+    
+    /* 卡片設計：白底、微陰影、金黃色頂部邊框 */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .card { 
+        background: #ffffff; 
+        padding: 30px; 
+        border-radius: 8px; 
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+        border-top: 4px solid #FFB300; /* 卡片上方加入金黃色線條 */
+    }
+    .card h3 { margin-bottom: 15px; color: #FFB300; }
+
+    /* 活動剪影 */
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
+    .gallery-img { 
+        width: 100%; 
+        height: 200px; 
+        object-fit: cover; 
+        border-radius: 6px; 
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+        border: 2px solid #ffffff; /* 相片白色邊框 */
+        transition: 0.3s; 
+    }
+    .gallery-img:hover {
+        transform: scale(1.03);
+        border-color: #FFB300; /* 滑鼠移上去時，相片邊框變金黃色 */
+    }
+
+/* 金黃色主題按鈕 */
+.btn-gold {
+    display: inline-block;
+    background-color: #FFB300; /* 金黃色背景 */
+    color: #222222;            /* 深色文字，確保清晰度 */
+    padding: 12px 35px;        /* 按鈕內邊距（上下 12px，左右 35px） */
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;       /* 圓角效果，讓按鈕看起來更現代 */
+    box-shadow: 0 4px 15px rgba(255, 179, 0, 0.3); /* 淡淡的金黃色陰影 */
+    transition: 0.3s;          /* 滑鼠懸停動畫速度 */
+}
+
+/* 滑鼠移到按鈕上的視覺效果 */
+.btn-gold:hover {
+    background-color: #e09e00; /* 顏色稍微變深 */
+    transform: translateY(-3px); /* 按鈕微微向上浮起 */
+    box-shadow: 0 6px 20px rgba(255, 179, 0, 0.5); /* 陰影加深 */
+}
+
+/* 聯絡我們容器：使用 Flexbox 讓三個卡片橫向排列 */
+.contact-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap; /* 當手機螢幕太窄時，卡片會自動整齊向下堆疊 */
+}
+
+/* 單個聯絡卡片的基礎樣式 */
+.contact-card {
+    background: #ffffff;
+    border: 2px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 30px 20px;
+    width: 260px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    transition: 0.3s ease; /* 讓動畫變形更平滑 */
+}
+
+.contact-icon {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.contact-card h4 {
+    font-size: 18px;
+    color: #222222;
+    margin-bottom: 8px;
+}
+
+.contact-card p {
+    font-size: 14px;
+    color: #777777;
+    line-height: 1.4;
+}
+
+/* 【核心】滑鼠懸停效果：外框變球隊代表金黃色，且卡片微微向上浮起 */
+.contact-card:hover {
+    border-color: #FFB300;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 179, 0, 0.15);
+}
+
+    /* 頁尾：金黃色背景，深色文字 */
+    footer { 
+        background-color: #FFB300; 
+        color: #222222; 
+        text-align: center; 
+        padding: 25px; 
+        margin-top: 40px; 
+        font-weight: bold; 
+    }
+</style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">曦城體育</div>
+<nav>
+    <ul>
+        <li><a href="#about">球隊簡介</a></li>
+        <li><a href="#dodgeball">閃避球介紹</a></li>
+        <li><a href="#goals">目標與未來</a></li>
+        <li><a href="#gallery">活動剪影</a></li>
+        <!-- 新增下面這行，按鈕指向 #membership -->
+        <li><a href="#membership">成為會員</a></li>
+        <li><a href="#contact" style="color: #FFB300; font-weight: bold;">聯絡我們</a></li>
+    </ul>
+</nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>讓世界看見曦城體育</h1>
+        <p>我們致力於推廣熱血、團隊與拼搏的閃避球運動。不論你來自何方，這裡都有你的舞台。</p>
+    </section>
+
+    <section id="about">
+        <h2>球隊簡介</h2>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p>「曦城體育」成立於 2023，是一支充滿活力與激情的閃避球隊。我們聚集了熱愛閃避球的運動員，透過系統化的訓練與豐富的比賽經驗，不斷突破自我，展現卓越的體育精神。</p>
+        </div>
+    </section>
+
+    <section id="dodgeball" style="background-color: #f0f4f8;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2>閃避球運動簡介</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>速度與激情</h3>
+                    <p>閃避球是一項考驗敏捷度、爆發力與觀察力的運動。在場上，每一秒都需要全神貫注。</p>
+                </div>
+                <div class="card">
+                    <h3>團隊協作</h3>
+                    <p>這不是一個人的遊戲。進攻時的戰術配合、防守時的互相掩護，才是贏得比賽的關鍵。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="goals">
+        <h2>球隊目標與未來</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>近期目標</h3>
+                <p>積極參與本地及區域性聯賽，提升球隊實戰經驗，並在來年賽事中衝擊前三名。</p>
+            </div>
+            <div class="card">
+                <h3>球隊未來</h3>
+                <p>走向國際！我們計劃與海外球隊進行交流賽，將「曦城體育」的精神帶到世界各地，並建立完善的青訓系統。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" style="background-color: #f0f4f8;">
+        <h2>活動剪影</h2>
+        <div class="gallery-grid">
+           <img src="images/match.jpg" alt="比賽精彩瞬間" class="gallery-img">
+        <img src="images/training.jpg" alt="球隊日常訓練" class="gallery-img">
+        <img src="images/team.jpg" alt="隊員大合照" class="gallery-img">
+        <img src="images/trophy.jpg" alt="榮譽時刻" class="gallery-img">
+        </div>
+    </section>
+
+<!-- 會員註冊系統區塊 -->
+<section id="membership" style="text-align: center;">
+    <!-- 這裡用一個 max-width 的 div 做出獨立方塊（卡片）的效果 -->
+    <div style="max-width: 800px; margin: 0 auto; background: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #FFB300; text-align: center;">
+        
+        <h3 style="font-size: 26px; color: #222222; margin-bottom: 20px;">👥 會員註冊系統</h3>
+        
+        <p style="color: #555555; margin-bottom: 35px; font-size: 16px; max-width: 650px; margin-left: auto; margin-right: auto;">
+            正式成為曦城體育球會會員！第一手掌握最新賽期、優先參與球會內部活動，並享有球會專屬周邊與福利選購權限。
+        </p>
+        
+        <!-- 直接套用 btn-gold 樣式，並換上會員專屬的 Google Form 網址 -->
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdutziUwy6BzbGn8PDqbXxYbZ2_yKKuk1WXgFjl4cpIUw4SBg/viewform?usp=header" target="_blank" class="btn-gold">成為會員</a>
+        
+    </div>
+</section>
+
+<!-- 聯絡與加入我們 -->
+<section id="contact" style="text-align: center;background-color: #f0f4f8;">
+    <h2>加入曦城體育</h2>
+    <p style="margin-bottom: 30px;">無論你想成為球員、參與訓練，還是與我們展開合作，歡迎填寫以下表格聯絡我們！</p>
+    
+    <!-- 核心超連結按鈕 -->
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfE1KiO_E5hNTkg7j5akUGs7eFY5HtGOMwH1suiHiJ7Tj3VUQ/viewform?usp=header" target="_blank" class="btn-gold">立即填寫報名表格</a>
+</section>
+
+<!-- 聯絡我們區塊 -->
+<section id="contact" style="background-color: #ffffff; text-align: center; padding: 60px 20px;">
+    <h2>聯絡我們</h2>
+    <p style="margin-bottom: 40px; color: #666;">有任何查詢、商務合作或想加入「曦城體育」？歡迎隨時聯絡我們！</p>
+    
+    <div class="contact-container">
+        <!-- Instagram 卡片 -->
+        <!-- 請將下面的 your_username 換成你們真實的 IG 帳號名稱 -->
+        <a href="https://www.instagram.com/hastar_sports/" target="_blank" class="contact-card">
+            <div class="contact-icon">📸</div>
+            <h4>Instagram</h4>
+            <p>關注球隊日常與最新動態</p>
+        </a>
+
+        <!-- WhatsApp 卡片 -->
+        <!-- 請將下面的 85290000000 換成你們的電話（需包含國家區號，例如香港是 852） -->
+        <a href="https://wa.me/85254941948" target="_blank" class="contact-card">
+            <div class="contact-icon">💬</div>
+            <h4>WhatsApp</h4>
+            <p>即時查詢及報名聯絡</p>
+        </a>
+
+        <!-- 電話直撥卡片 -->
+        <!-- 請將下面的 90000000 換成你們的聯絡電話 -->
+        <a href="tel:+85254941948" class="contact-card">
+            <div class="contact-icon">📞</div>
+            <h4>聯絡電話</h4>
+            <p>辦公時間內歡迎直接來電</p>
+        </a>
+    </div>
+</section>
+    <footer>
+        <p>&copy; 2026 曦城體育 Hastar Sports. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
